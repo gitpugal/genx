@@ -23,7 +23,6 @@ function App() {
   async function submitHandler(e) {
     e.preventDefault();
     if (userPrompt != "") {
-      alert(process.env.REACT_APP_OPEN_API_API)
       try {
         setIsProcessing(true);
         const { Configuration, OpenAIApi } = require("openai");
