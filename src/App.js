@@ -23,11 +23,13 @@ function App() {
   async function submitHandler(e) {
     e.preventDefault();
     if (userPrompt != "") {
+      alert(process.env.REACT_APP_OPEN_API_API)
       try {
         setIsProcessing(true);
         const { Configuration, OpenAIApi } = require("openai");
         const configuration = new Configuration({
-          apiKey: "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",
+          apiKey: process.env.REACT_APP_OPEN_API_API,
+          organization: "org-vhT3jOlV7cI1jkVgBa6Pi0wv",
         });
         const openai = new OpenAIApi(configuration);
         await openai.createImage({
@@ -35,7 +37,6 @@ function App() {
           n: 2,
           size: '512x512',
         }).then((value) => {
-          // console.log(value.data.data[0].url);
           setImageUrl(value.data.data[0].url);
           setIsProcessing(false);
           setUserPrompt("");
